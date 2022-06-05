@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<DbContext>(x => x.UseNpgsql("Host=technecon.de;Database=technecon;Username=postgres;Password=localDebug"));
+builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseNpgsql("Host=technecon.de;Database=technecon;Username=postgres;Password=localDebug"));
 
 var app = builder.Build();
 
