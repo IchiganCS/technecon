@@ -6,9 +6,10 @@ public class ApplicationDbContext : DbContext {
     /// </summary>
     /// <typeparam name="ApplicationDbContext"></typeparam>
     /// <returns></returns>
-    public ApplicationDbContext() :
-        this(new DbContextOptionsBuilder<ApplicationDbContext>().Options) {}
-        
+    public static ApplicationDbContext CreateDefault() {
+        return new(new DbContextOptionsBuilder<ApplicationDbContext>().Options);
+    }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
         : base(contextOptions) {
 
