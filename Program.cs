@@ -2,9 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseNpgsql("Host=technecon.de;Database=technecon;Username=postgres;Password=localDebug"));
+
+DbContextOptionsBuilder<ApplicationDbContext> contextOptionsBuilder = new();
+contextOptionsBuilder.UseNpgsql(builder.Configuration["DefaultConnection"]);
+ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 var app = builder.Build();
 
