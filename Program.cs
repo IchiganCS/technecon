@@ -3,8 +3,6 @@ using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 var builder = WebApplication.CreateBuilder(args);
 
-EnvironmentVariablesConfigurationProvider envVar = new("Techne_");
-
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -24,12 +22,8 @@ if (app.Environment.IsDevelopment()) {
 }
 
 else if (app.Environment.IsProduction()) {
-    //TODO
     host = "localhost";
-    if (!envVar.TryGet("DbPass", out password)) {
-        Console.WriteLine("Couldn't get the database password, abort!");
-        return;
-    }
+    password = builder.Configuration["dbPass"];
 }
 
 contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;Username={user};Password={password}");
