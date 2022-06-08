@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Technecon.Models;
+
+namespace Technecon;
 
 public class ApplicationDbContext : DbContext {
     public static DbContextOptions<ApplicationDbContext>? StandardOptions { get; set; }
@@ -12,12 +15,12 @@ public class ApplicationDbContext : DbContext {
         return new(StandardOptions!);
     }
 
-    #pragma warning disable CS8618
+#pragma warning disable CS8618
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
         : base(contextOptions) {
-        
+
     }
-    #pragma warning restore CS8618
+#pragma warning restore CS8618
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     }

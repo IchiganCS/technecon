@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.EnvironmentVariables;
+using Technecon;
 
 var builder = WebApplication.CreateBuilder(args);
 
