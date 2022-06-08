@@ -7,16 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 
-builder.WebHost.UseKestrel(
-    serverOptions => {
-        serverOptions.ConfigureHttpsDefaults(
-            httpsAdapter => {
-                httpsAdapter.ServerCertificate = new("/etc/technecon/cert.cer");
-            }
-        );
-    }
-);
-
 
 var app = builder.Build();
 
