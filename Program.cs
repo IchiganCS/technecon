@@ -7,6 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 
+builder.WebHost.UseKestrel(
+    serverOptions => {
+        serverOptions.ConfigureHttpsDefaults(
+            httpsAdapter => {
+                httpsAdapter.ServerCertificate = new("/etc/technecon/cert.cer");
+            }
+        );
+    }
+);
 
 
 var app = builder.Build();
@@ -36,15 +45,6 @@ ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 // Configure the HTTP request pipeline.
 if (app.Environment.IsProduction())
 {
-    builder.WebHost.UseKestrel(
-        serverOptions => {
-            serverOptions.ConfigureHttpsDefaults(
-                httpsAdapter => {
-                    httpsAdapter.ServerCertificate = new("/etc/technecon/cert.cer");
-                }
-            );
-        }
-    );
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
