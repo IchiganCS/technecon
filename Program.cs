@@ -5,8 +5,10 @@ using Technecon;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages()
-        .AddRazorRuntimeCompilation();
+IMvcBuilder mvcBuilder= builder.Services.AddRazorPages();
+
+if (builder.Environment.IsDevelopment()) 
+    mvcBuilder.AddRazorRuntimeCompilation();
 
 
 var app = builder.Build();

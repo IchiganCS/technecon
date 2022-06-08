@@ -1,20 +1,24 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - technecon</title>
+    <title>@ViewData["Title"] - TechneCon</title>
     <link rel="icon" type="image/icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon-192x192.png" />
     <link rel="stylesheet" href="/css/main.css" />
+    <meta name="description" content="@ViewData["Description"]" />
+    <meta name="author" content="Samuel" />
     <meta http-equiv="refresh" content="1;url=/"/>
 </head>
 <body>
     <div class="top-navbar">
-        <a asp-page="/Index">TechneCon</a>
+        <a class="logo" asp-page="/">TechneCon</a>
         <ul>
-            <li><a asp-page="/Privacy">Privacy</a></li>
-            <li><a asp-page="/Listing">Künstler</a></li>
+            <li><a asp-page="/Privacy">Werke</a></li>
+            <li><a asp-page="/Error">Künstler</a></li>
+            <li><a asp-page="/AboutMe">Der Betreiber</a></li>
+            <li><a asp-page="/Search">Suche</a></li>
         </ul>
     </div>
     @RenderBody()

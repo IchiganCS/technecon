@@ -1,11 +1,12 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Startseite";
+    ViewData["Description"] = "Die Startseite des Technecons. Hier erfahren Sie etwas über zahlreiche, auch unbekannte, Künstler und deren Werke. Nehmen Sie sich einen Moment Zeit, unsere umfangreiche Sammlung zu durchstöbern.";
 }
 
 <div>
-    <h1>Welcome</h1>
+    <h1>Willkommen</h1>
     @using (var db = ApplicationDbContext.CreateDefault()) {
         foreach (Artist ar in db.Artists) {
             <p>@ar.Surname, @ar.Firstnames, @ar.ID</p>
