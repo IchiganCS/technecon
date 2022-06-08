@@ -12,10 +12,12 @@ public class ApplicationDbContext : DbContext {
         return new(StandardOptions!);
     }
 
+    #pragma warning disable CS8618
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
         : base(contextOptions) {
         
     }
+    #pragma warning restore CS8618
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     }

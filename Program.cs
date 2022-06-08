@@ -21,8 +21,8 @@ if (app.Environment.IsDevelopment()) {
 }
 
 else if (app.Environment.IsProduction()) {
-    //host = "localhost"; //TODO
-    host = "technecon.de";
+    //TODO
+    host = "localhost"; 
     Console.Write($"Database password for user {user}: " );
     password = Console.ReadLine()!;
     Console.Clear();
