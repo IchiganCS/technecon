@@ -6,11 +6,30 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-DbContextOptionsBuilder<ApplicationDbContext> contextOptionsBuilder = new();
-contextOptionsBuilder.UseNpgsql(builder.Configuration["DefaultConnection"]);
-ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 var app = builder.Build();
+
+DbContextOptionsBuilder<ApplicationDbContext> contextOptionsBuilder = new();
+
+string host = string.Empty;
+string password = string.Empty;
+string user = "postgres";
+
+if (app.Environment.IsDevelopment()) {
+    host = "technecon.de";
+    password = builder.Configuration["dbPass"];
+}
+
+else if (app.Environment.IsProduction()) {
+    //host = "localhost"; //TODO
+    host = "technecon.de";
+    Console.Write($"Database password for user {user}: " );
+    password = Console.ReadLine()!;
+    Console.Clear();
+}
+
+contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;Username={user};Password={password}");
+ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
