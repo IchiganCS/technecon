@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 var builder = WebApplication.CreateBuilder(args);
 
+EnvironmentVariablesConfigurationProvider envVar = new("Techne_");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -23,18 +25,18 @@ if (app.Environment.IsDevelopment()) {
 
 else if (app.Environment.IsProduction()) {
     //TODO
-    host = "localhost"; 
-    Console.Write($"Database password for user {user}: " );
-    password = Console.ReadLine()!;
-    Console.Clear();
+    host = "localhost";
+    if (!envVar.TryGet("DbPass", out password)) {
+        Console.WriteLine("Couldn't get the database password, abort!");
+        return;
+    }
 }
 
 contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;Username={user};Password={password}");
 ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsProduction())
-{
+if (app.Environment.IsProduction()) {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
