@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Technecon.Data;
 using Technecon.Pages;
 
 namespace Technecon;
@@ -25,5 +26,5 @@ public class ApplicationDbContext : DbContext {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     }
 
-    public DbSet<ArtistModel.Artist> Artists { get; set; }
+    public DbSet<Artist> Artists { get; set; }
 }

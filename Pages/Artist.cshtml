@@ -2,28 +2,38 @@
 @model ArtistModel
 @addTagHelper *, Westwind.AspNetCore.Markdown
 @{
-    ViewData["Title"] = Model.CurrentArtist.CommonName;
-    ViewData["Description"] = "Die Startseite des Technecons. Hier erfahren Sie etwas über zahlreiche, auch unbekannte, Künstler und deren Werke. Nehmen Sie sich einen Moment Zeit, unsere umfangreiche Sammlung zu durchstöbern.";
+    ViewData["Title"] = Model.Artist.CommonName;
+    ViewData["Description"] = "Eine kleine Übersicht des Lebens und der Werke von " + Model.Artist.Fullname;
 }
 
 <div>
     <div class="contentsplitter">
-        <img src="@Model.CurrentArtist.PicturePath"
+        <img src="@Model.Artist.PicturePath"
             class="accompanying"/>
         <div class="artistcaptions">
-            <h1>@Model.CurrentArtist.AllFirstnames<br>
-            @Model.CurrentArtist.Surname</h1>
-            <h2>Komponist</h2>
-            <h3>30. November 1796 - 20. April 1869</h3>
+            <h1>@Model.Artist.AllFirstnames<br>
+            @Model.Artist.Surname</h1>
+            <h2>@Model.Artist.OccupationString</h2>
+            <h3>@Localizer.GetDayString(Model.Artist.Birthday) - @Localizer.GetDayString(Model.Artist.Obit)</h3>
             @* <h3>@Model.CurrentArtist.Occupations</h3> *@
         </div>
     </div>
 
     <hr class="separator"/>
+    
+    <center>
+
+    <p class="quote">
+        „@Model.Artist.QuoteString(Url.Content)“
+    </p>
+    </center>
+
+
+    <hr class="separator" />
 
     <div class="text">
     <markdown>
-        @Model.BiographyText
+        @Model.Artist.BiographyString(Url.Content)
     </markdown>
     </div>
 </div>
