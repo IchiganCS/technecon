@@ -67,9 +67,10 @@ div.top-navbar>ul>li {
 }
 
 div.content {
-  max-width: 100em;
+  max-width: min(100em, 90%);
   /* margin: 0 calc(50% - 50em); */
   margin: auto;
+  margin-top: 2em;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -102,4 +103,46 @@ div.text>p {
 }
 div.text>a, div.text>p>a {
   text-decoration: none;
+}
+
+div.accompanying>img, img.accompanying {
+  width: 30em;
+}
+
+div.contentsplitter {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+div.contentsplitter>* {
+  max-width: 30em;
+  margin: 0 2em;
+}
+
+div.contentsplitter>img {
+  padding: 1em;
+}
+
+div.artistcaptions {
+  width: 40%;
+}
+div.artistcaptions>* {
+  text-align: center;
+  font-family: serif;
+}
+div.artistcaptions>h1 {
+  font-family: serif;
+  font-weight: normal;
+  font-size: 3em;
+  margin: 2em auto;
+}
+div.artistcaptions>h2 {
+  font-weight: normal;
+  font-size: xx-large;
+  margin: 0;
+}
+div.artistcaptions>h3 {
+  font-weight: normal;
+  font-size: 1.3em;
 }

@@ -1,22 +1,28 @@
 ﻿@page
 @model IndexModel
+@addTagHelper *, Westwind.AspNetCore.Markdown
 @{
     ViewData["Title"] = "Startseite";
     ViewData["Description"] = "Die Startseite des Technecons. Hier erfahren Sie etwas über zahlreiche, auch unbekannte, Künstler und deren Werke. Nehmen Sie sich einen Moment Zeit, unsere umfangreiche Sammlung zu durchstöbern.";
-    ViewData["CustomCss"] = "/css/welcome.css";
 }
 
 <div>
     <div class="contentsplitter">
         <div class="text">
-            <h1>technecon.de</h1>
-            <p>Willkommen auf dieser Webseite! Rechts ist gleich das Thema dargestellt: Kunst! Der Name derselben leitet sich aus dem Wort „techne“ (griech. Kunst) und Lexicon ab, es handelt sich also um nichts weiter als ein Nachschlagewerk für große Opera großer Meister.</p>
-            <p>Diese Seite legt zunächst ihren Fokus auf Lyrik und ihre Bearbeitung in Musik, der Autor ist sich seiner eigenen Unfähigkeit in weiterführenden Bereichen wohl bewusst. Malerei wird es dennoch geben, denn sie bietet sich für dieses Medium einfach herrlich an.</p>
-            <p>Wert wird auf Vollständigkeit und Korrektheit der angegeben Daten gelegt. Manchmal gesellt sich wohl auch ein selbstgeschriebener Text dieses Autors dazu, der dem Werk selbst höchstens unzureichend zur Ehr gereicht.</p>
-            <p>Warum beginnen Sie Ihren Rundgang nicht, indem Sie rechts auf das Gemälde drücken? So gelangen Sie zu dessen Seite mit näheren Informationen.</p>
+            <markdown>
+            # technecon.de 
+
+            Willkommen auf dieser Webseite! Rechts ist gleich das Thema dargestellt: Kunst! Der Name derselben leitet sich aus dem Wort „techne“ (griech. Kunst) und Lexicon ab, es handelt sich also um nichts weiter als ein Nachschlagewerk für große Opera großer Meister.
+            
+            Diese Seite legt zunächst ihren Fokus auf Lyrik und ihre Bearbeitung in Musik, der Autor ist sich seiner eigenen Unfähigkeit in weiterführenden Bereichen wohl bewusst. Malerei wird es dennoch geben, denn sie bietet sich für dieses Medium einfach herrlich an.
+            
+            Wert wird auf Vollständigkeit und Korrektheit der angegeben Daten gelegt. Manchmal gesellt sich wohl auch ein selbstgeschriebener Text dieses Autors dazu, der dem Werk selbst höchstens unzureichend zur Ehr gereicht.
+            
+            Warum beginnen Sie Ihren Rundgang nicht, indem Sie rechts auf das Gemälde drücken? So gelangen Sie zu dessen Seite mit näheren Informationen.
+            </markdown>
         </div>
         @{string imageDesc = "Der Triumph der Religion in den Künsten, Friedrich Overbeck"; }
-        <div class="imagewithcaption side">
+        <div class="imagewithcaption accompanying">
             <img src="/images/triumphofreligion.jpg" 
                 alt="@imageDesc"
                 title="@imageDesc" />

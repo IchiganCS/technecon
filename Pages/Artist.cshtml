@@ -1,6 +1,5 @@
 @page "{id:int?}"
 @model ArtistModel
-@using Microsoft.AspNetCore.Hosting;
 @addTagHelper *, Westwind.AspNetCore.Markdown
 @{
     ViewData["Title"] = Model.CurrentArtist.CommonName;
@@ -8,10 +7,23 @@
 }
 
 <div>
-    <img src="@Model.CurrentArtist.PicturePath"/>
+    <div class="contentsplitter">
+        <img src="@Model.CurrentArtist.PicturePath"
+            class="accompanying"/>
+        <div class="artistcaptions">
+            <h1>@Model.CurrentArtist.AllFirstnames<br>
+            @Model.CurrentArtist.Surname</h1>
+            <h2>Komponist</h2>
+            <h3>30. November 1796 - 20. April 1869</h3>
+            @* <h3>@Model.CurrentArtist.Occupations</h3> *@
+        </div>
+    </div>
+
+    <hr class="separator"/>
+
     <div class="text">
     <markdown>
-        @System.IO.File.ReadAllText(Url.Content($"wwwroot{Model.CurrentArtist.BiographyPath}"));
+        @Model.BiographyText
     </markdown>
     </div>
 </div>

@@ -45,6 +45,9 @@ public class ArtistModel : PageModel {
 
     public Artist CurrentArtist { get; private set; }
 
+    public string BiographyText =>
+        System.IO.File.ReadAllText(Url.Content($"wwwroot{CurrentArtist.BiographyPath}"));
+
     public IActionResult OnGet(int? id) {
         if (id is null)
             return NotFound();
