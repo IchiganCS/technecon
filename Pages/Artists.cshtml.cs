@@ -29,9 +29,21 @@ public class ArtistModel : PageModel {
         [Required]
         [Column("id")]
         public int ID { get; set; }
+
+        [Column("sex")]
+        public int Sex { get; set; }
+
+        [Column("occupations")]
+        public int Occupations{ get; set; }
+
+        [Column("biography")]
+        public string BiographyPath { get; set; }
+
+        [Column("picture")]
+        public string PicturePath { get; set; }
     }
 
-    public Artist? CurrentArtist { get; private set; }
+    public Artist CurrentArtist { get; private set; }
 
     public IActionResult OnGet(int? id) {
         if (id is null)

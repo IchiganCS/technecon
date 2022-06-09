@@ -1,10 +1,17 @@
 @page "{id:int?}"
 @model ArtistModel
+@using Microsoft.AspNetCore.Hosting;
+@addTagHelper *, Westwind.AspNetCore.Markdown
 @{
     ViewData["Title"] = Model.CurrentArtist.CommonName;
     ViewData["Description"] = "Die Startseite des Technecons. Hier erfahren Sie etwas über zahlreiche, auch unbekannte, Künstler und deren Werke. Nehmen Sie sich einen Moment Zeit, unsere umfangreiche Sammlung zu durchstöbern.";
 }
 
 <div>
-    <p>@Model.CurrentArtist.Fullname</p>
+    <img src="@Model.CurrentArtist.PicturePath"/>
+    <div class="text">
+    <markdown>
+        @System.IO.File.ReadAllText(Url.Content($"wwwroot{Model.CurrentArtist.BiographyPath}"));
+    </markdown>
+    </div>
 </div>
