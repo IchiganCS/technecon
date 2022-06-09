@@ -1,0 +1,10 @@
+@page "{id:int?}"
+@model ArtistModel
+@{
+    ViewData["Title"] = Model.CurrentArtist.CommonName;
+    ViewData["Description"] = "Die Startseite des Technecons. Hier erfahren Sie etwas über zahlreiche, auch unbekannte, Künstler und deren Werke. Nehmen Sie sich einen Moment Zeit, unsere umfangreiche Sammlung zu durchstöbern.";
+}
+
+<div>
+    <p>@Model.CurrentArtist.Fullname</p>
+</div>
