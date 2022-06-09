@@ -1,0 +1,56 @@
+div.text {
+    font-family: serif;
+
+}
+
+div.text>h1 {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 2.2em;
+}
+
+div.text>p {
+    text-align: justify;
+    font-size: larger;
+}
+
+div.text>a,
+div.text>p>a {
+    text-decoration: none;
+}
+
+div.artistcaptions {
+    width: 30em;
+}
+
+div.artistcaptions>* {
+    text-align: center;
+    font-family: serif;
+}
+
+div.artistcaptions>h1 {
+    font-family: serif;
+    font-weight: normal;
+    font-size: 3em;
+    margin: 2em auto;
+}
+
+div.artistcaptions>h2 {
+    font-weight: normal;
+    font-size: xx-large;
+    margin: 0;
+}
+
+div.artistcaptions>h3 {
+    font-weight: normal;
+    font-size: 1.3em;
+}
+
+p.quote {
+    max-width: 30em;
+    text-align: justify;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(67, 67, 67);
+}

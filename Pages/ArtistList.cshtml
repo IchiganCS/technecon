@@ -1,0 +1,16 @@
+@page
+@model ArtistListModel
+@{
+    ViewData["Title"] = "Künstlerliste";
+    ViewData["Description"] = "Eine Liste aller Künstler";
+}
+
+<div>
+    @using (var db = ApplicationDbContext.CreateDefault()) {
+        foreach (Artist art in db.Artists) {
+            <a asp-page="/Artist" asp-route-id="@art.ID">
+            @art.Fullname
+            </a>
+        }
+    }
+</div>
