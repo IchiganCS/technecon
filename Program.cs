@@ -29,7 +29,12 @@ else if (app.Environment.IsProduction()) {
     password = builder.Configuration["dbPass"];
 }
 
-contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;Username={user};Password={password}");
+contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;UserId={user};Password={password}",
+    options => 
+    options.EnableRetryOnFailure(
+        maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), 
+        errorCodesToAdd: null));
+        
 ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 // Configure the HTTP request pipeline.

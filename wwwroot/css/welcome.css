@@ -1,0 +1,17 @@
+div.side>img {
+    width: 30em;
+}
+
+div.contentsplitter {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+}
+div.contentsplitter>* {
+    max-width: 30em;
+    margin: 0 2em;
+}
+
+div.contentsplitter>img {
+    padding: 1em;
+}

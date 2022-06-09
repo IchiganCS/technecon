@@ -7,9 +7,12 @@
     <link rel="icon" type="image/icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon-192x192.png" />
     <link rel="stylesheet" href="/css/main.css" />
+    @if (@ViewData["CustomCss"] is not null) {
+        <link rel="stylesheet" href="@ViewData["CustomCss"]" />
+    }
     <meta name="description" content="@ViewData["Description"]" />
     <meta name="author" content="Samuel" />
-    <meta http-equiv="refresh" content="1;url=/"/>
+    @* <meta http-equiv="refresh" content="1;url=/"/> *@
 </head>
 <body>
     <div class="top-navbar">
@@ -21,7 +24,8 @@
             <li><a asp-page="/Search">Suche</a></li>
         </ul>
     </div>
-    @RenderBody()
-    <p>asfasfasfasf</p>
+    <div class="content">
+        @RenderBody()
+    </div>
 </body>
 </html>
