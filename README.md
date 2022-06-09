@@ -10,6 +10,7 @@ The source code for <https://technecon.de>!
   - `Commonfirstname`: only has to be specified if there actually is a common firstname. If `Allfirstnames` is good enough, leave `Commonfirstname` empty.
   - Variable pointing to a file (`markdown` and `picture`) can be converted to a readable file from the disk via `Url.Content($"wwwroot{path}")`.
   - `birthday` and `obit` point to a specific day.
+  - The given `picture` has to have a 512x512 resolution.
 
 - The `markdown` file for artists
   - The first line is a quote from the artist.
