@@ -18,11 +18,13 @@ public class Opus {
 
     [Column("creator")]
     public int CreatorID { get; set; }
-    public Artist Creator {get; private set;}
+    public Artist Creator { get; private set; }
 
     [Column("base")]
     public int? BaseID { get; set; }
     public bool HasBase => BaseID is not null;
+    public Opus Base { get; private set; }
+
 
     [Column("type")]
     [Required]
@@ -33,8 +35,42 @@ public class Opus {
     [Column("title")]
     public string? Title { get; set; }
 
-    [Column("path")]
-    public string? Path { get; set; }
+
+    private string FileDirectory => $"wwwroot/opera/{ID}/";
+    public string MarkdownPath => FileDirectory + "markdown.md";
+    public string PaintingPath => FileDirectory + "image.jpg";
+    public bool HasMarkdown => File.Exists(MarkdownPath);
+    public IEnumerable<string> TextLines {
+        get {
+            var lines = File.ReadAllLines(MarkdownPath)
+                .TakeWhile(x => x != "---")
+                .SkipWhile(x => string.IsNullOrWhiteSpace(x))
+                .ToList();
+
+            for (int i = lines.Count - 1; i >= 0; i--)
+                if (!string.IsNullOrWhiteSpace(lines[i])) {
+                    return lines.SkipLast(lines.Count - i - 1);
+                }
+
+            return new string[] { };
+        }
+    }
+    public string Text => TextLines.Aggregate((x, y) => $"{x}\n{y}");
+    public bool HasText => TextLines.Any();
+    public string Description {
+        get {
+            var lines = File.ReadAllLines(MarkdownPath)
+                .SkipWhile(x => x != "---")
+                .Skip(1);
+
+            if (lines.Any())
+                return lines.Aggregate((x, y) => $"{x}\n{y}");
+
+            return "";
+        }
+    }
+    public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
+
 
 
     private bool InitalizedWithDbContext { get; set; } = false;
@@ -44,10 +80,11 @@ public class Opus {
 
         InitalizedWithDbContext = true;
         Creator = context.Artists.Find(CreatorID)!;
-        
+
         if (HasBase && string.IsNullOrEmpty(Title)) {
-            context.Opera.Find(BaseID)!.InitalizeWithDbContext(context);
-            Title = context.Opera.Find(BaseID)!.Title;
+            Base = context.Opera.Find(BaseID)!;
+            Base.InitalizeWithDbContext(context);
+            Title = Base.Title;
         }
     }
 

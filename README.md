@@ -22,3 +22,8 @@ The source code for <https://technecon.de>!
 - The `markdown` file for artists
   - The first line is a quote from the artist.
   - All the following lines are the biography.
+
+- The `markdown` file for an opus
+  - Every file needs `---` as a single line
+  - The block above is used for a text with no formatting except newlines
+  - The block below is a description for anything can be used with regular markdown

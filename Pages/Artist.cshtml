@@ -1,6 +1,5 @@
 @page "{id:int?}"
 @model ArtistModel
-@addTagHelper *, Westwind.AspNetCore.Markdown
 @{
     ViewData["Title"] = Model.Artist.CommonName;
     ViewData["Description"] = "Eine kleine Übersicht des Lebens und der Werke von " + Model.Artist.Fullname;

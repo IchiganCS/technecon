@@ -67,3 +67,15 @@ p.quote {
     font-style: italic;
     color: rgb(67, 67, 67);
 }
+
+
+div.poem>p {
+    min-width: max-content;
+    font-size: large;
+    line-height: 1.52rem;
+}
+div.poem {
+    width: fit-content;
+    margin: auto;
+    transform: translateX(8%);/*looks nicer*/
+}
