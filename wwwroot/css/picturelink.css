@@ -1,0 +1,51 @@
+div.picturelink {
+    max-width: 7em;
+    border-radius: 0.5em;border: 
+    1px solid rgb(194, 194, 194);
+    padding: 0.6em;
+    margin: 2em;
+}
+
+div.picturelink>a {
+
+    justify-items: center;
+    text-decoration: none;
+    max-width: inherit;
+    height: inherit;
+}
+
+div.picturelink>*>img {
+    margin: auto;
+    max-width: inherit;
+    margin-bottom: 0.5em;
+}
+
+div.picturelink>*>* {
+    font-weight: normal;
+    text-align: center;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+div.picturelink>*>h1 {
+    color: black;
+    font-size: large;
+}
+
+div.picturelink>*>h2 {
+    margin: 0;
+    color: rgb(65, 65, 65);
+    font-style: italic;
+    font-size: small;
+}
+
+div.picturelink>*>h3 {
+    font-size: medium;
+    margin-top: 0.6em;
+    color: rgb(65, 65, 65);
+}
+
+div.picturebox {
+    display: flex;
+    flex-wrap: wrap;
+}

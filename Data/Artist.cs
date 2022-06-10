@@ -57,4 +57,7 @@ public class Artist {
         string text = System.IO.File.ReadAllText($"wwwroot{MarkdownPath}");
         return text.Substring(text.IndexOf('\n')).Trim();
     }
+
+    public string LifeDates => $"{Localizer.GetDayString(Birthday)} - {Localizer.GetDayString(Obit)}";
+    public string YearLifeDates => $"{Localizer.GetYearString(Birthday)} - {Localizer.GetYearString(Obit)}";
 }

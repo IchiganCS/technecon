@@ -7,10 +7,17 @@
 
 <div>
     @using (var db = ApplicationDbContext.CreateDefault()) {
-        foreach (Artist art in db.Artists) {
-            <a asp-page="/Artist" asp-route-id="@art.ID">
-            @art.Fullname
-            </a>
+        <div class="picturebox">
+        @foreach (Artist art in db.Artists.OrderBy(x => x.Birthday)) {
+            <div class="picturelink">
+                <a asp-page="/Artist" asp-route-id="@art.ID">
+                    <img src="@art.PicturePath" alt="@art.CommonName"/>
+                    <h1>@art.CommonName</h1>
+                    <h2>@art.OccupationString</h2>
+                    <h3>@art.YearLifeDates</h3>
+                </a>
+            </div>
         }
+        </div>
     }
 </div>

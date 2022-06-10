@@ -1,5 +1,6 @@
 @import url(navbar.css);
 @import url(textstyles.css);
+@import url(picturelink.css);
 
 html {
   font-size: 14px;
@@ -35,13 +36,16 @@ div.content {
   justify-content: center;
 }
 
-div.imagewithcaption>p {
+div.imagewithcaption>p, div.imagewithcaption>a>p {
   color: gray;
   font-family: sans-serif;
   font-style: italic;
   text-align: center;
   margin: auto;
+  text-decoration: none;
 }
+
+
 
 hr.separator {
   margin: 2em auto;

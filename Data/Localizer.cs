@@ -15,4 +15,8 @@ public static class Localizer {
     public static string GetDayString(DateTime date) {
         return date.ToString("dd. MMMM yyyy", CultureInfo.CreateSpecificCulture("de-DE"));
     }
+
+    internal static object GetYearString(DateTime date) {
+        return date.ToString("yyyy", CultureInfo.CreateSpecificCulture("de-DE"));
+    }
 }
