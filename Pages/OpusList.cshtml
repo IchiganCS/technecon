@@ -6,9 +6,8 @@
 }
 
 <div>
-    @using (var db = ApplicationDbContext.CreateDefault()) {
-        @foreach (Opus op in db.Opera) {
-            <p>@op.GetTitle(db) von @db.Artists.Find(op.CreatorID).CommonName</p>
+        @foreach (Opus op in Model.DbContext.Opera) {
+            op.InitalizeWithDbContext(Model.DbContext);
+            <p>@op.Title von @op.Creator.CommonName</p>
         }
-    }
 </div>

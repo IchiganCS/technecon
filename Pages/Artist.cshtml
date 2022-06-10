@@ -9,7 +9,7 @@
 <div>
     <div class="contentsplitter">
         @if (Model.Artist.HasPicture) {
-            <img src="@Model.Artist.PicturePath"
+            <img src="@Model.Artist.HtmlPicturePath"
                 class="accompanying"/>
         }
 
@@ -27,17 +27,19 @@
         <hr class="separator"/>
         <center>
             <p class="quote">
-                „@Model.Artist.QuoteString(Url.Content)“
+                „@Model.Artist.QuoteString“
             </p>
         </center>
 
 
-        <hr class="separator" />
+        @if (!string.IsNullOrWhiteSpace(Model.Artist.BiographyString)) {
+            <hr class="separator" />
 
-        <div class="text">
-        <markdown>
-            @Model.Artist.BiographyString(Url.Content)
-        </markdown>
-        </div>
+            <div class="text">
+            <markdown>
+                @Model.Artist.BiographyString
+            </markdown>
+            </div>
+        }
     }
 </div>

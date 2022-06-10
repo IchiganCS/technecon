@@ -4,12 +4,11 @@ using Technecon.Data;
 
 namespace Technecon.Pages;
 
-public class ArtistModel : PageModel {
-    public Artist Artist { get; private set; }
+public class OpusModel : PageModel {
+    public Opus Opus { get; private set; }
+    public ApplicationDbContext DbContext { get; set; }
 
-    public ApplicationDbContext DbContext { get; private set; }
-
-    public ArtistModel(ApplicationDbContext context) {
+    public OpusModel(ApplicationDbContext context) {
         DbContext = context;
     }
 
@@ -17,12 +16,12 @@ public class ArtistModel : PageModel {
         if (id is null)
             return NotFound();
 
-        Artist? ar = DbContext.Artists.Find(id);
-        if (ar is null)
+        Opus? op = DbContext.Opera.Find(id);
+        if (op is null)
             return NotFound();
         else
-            Artist = ar;
-
+            Opus = op;
+            
         return Page();
     }
 }

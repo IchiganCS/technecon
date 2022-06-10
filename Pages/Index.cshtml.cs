@@ -5,9 +5,10 @@ namespace Technecon.Pages;
 
 public class IndexModel : PageModel
 {
-
-    public IndexModel()
+    public ApplicationDbContext DbContext { get; set; }
+    public IndexModel(ApplicationDbContext context)
     {
+        DbContext = context;
     }
 
     public void OnGet()

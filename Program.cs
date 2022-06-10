@@ -10,32 +10,31 @@ IMvcBuilder mvcBuilder= builder.Services.AddRazorPages();
 if (builder.Environment.IsDevelopment()) 
     mvcBuilder.AddRazorRuntimeCompilation();
 
+string host = string.Empty;
+string password = string.Empty;
+string user = "postgres";
+
+if (builder.Environment.IsDevelopment()) {
+    host = "technecon.de";
+    password = builder.Configuration["dbPass"];
+}
+
+else if (builder.Environment.IsProduction()) {
+    host = "localhost";
+    password = builder.Configuration["dbPass"];
+}
+
+builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseNpgsql($"Host={host};Database=technecon;UserId={user};Password={password}",
+    options =>
+    options.EnableRetryOnFailure(
+        maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30),
+        errorCodesToAdd: null)));
+
 
 var app = builder.Build();
 
 DbContextOptionsBuilder<ApplicationDbContext> contextOptionsBuilder = new();
 
-string host = string.Empty;
-string password = string.Empty;
-string user = "postgres";
-
-if (app.Environment.IsDevelopment()) {
-    host = "technecon.de";
-    password = builder.Configuration["dbPass"];
-}
-
-else if (app.Environment.IsProduction()) {
-    host = "localhost";
-    password = builder.Configuration["dbPass"];
-}
-
-contextOptionsBuilder.UseNpgsql($"Host={host};Database=technecon;UserId={user};Password={password}",
-    options => 
-    options.EnableRetryOnFailure(
-        maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), 
-        errorCodesToAdd: null));
-        
-ApplicationDbContext.StandardOptions = contextOptionsBuilder.Options;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsProduction()) {

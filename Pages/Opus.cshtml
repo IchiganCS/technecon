@@ -1,0 +1,11 @@
+@page "{id:int?}"
+@model OpusModel
+@{
+    Model.Opus.InitalizeWithDbContext(Model.DbContext);
+    ViewData["Title"] = Model.Opus.Title;
+    ViewData["Description"] = "Lesen Sie mehr über " + ViewData["Title"];
+}
+
+<div>
+    <p>@Model.Opus.Creator.Fullname</p>
+</div>

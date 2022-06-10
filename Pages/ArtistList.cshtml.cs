@@ -4,7 +4,10 @@ namespace Technecon.Pages;
 
 public class ArtistListModel : PageModel {
 
-    public ArtistListModel() {
+    public ApplicationDbContext DbContext { get; private set; }
+
+    public ArtistListModel(ApplicationDbContext context) {
+        DbContext = context;
     }
 
     public void OnGet() {

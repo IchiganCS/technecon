@@ -7,6 +7,7 @@ namespace Technecon.Data;
 
 [Table("artists")]
 public class Artist {
+    public string FileDirectory => $"wwwroot/artists/{ID}/";
 
     [Column("surname")]
     [Required]
@@ -37,14 +38,14 @@ public class Artist {
     public string OccupationString => Localizer.GetOccupation(this);
 
 
-    [Column("markdown")]
-    public string? MarkdownPath { get; set; }
-    public bool HasMarkdown => !string.IsNullOrEmpty(MarkdownPath);
+    private string MarkdownPath => FileDirectory + "markdown.md";
+    public bool HasMarkdown => File.Exists(MarkdownPath);
 
 
-    [Column("picture")]
-    public string? PicturePath { get; set; }
-    public bool HasPicture => !string.IsNullOrEmpty(PicturePath);
+    private string PicturePath => FileDirectory + "image.jpg";
+    public string HtmlPicturePath => $"/artists/{ID}/image.jpg";
+    public bool HasPicture => File.Exists(PicturePath);
+
 
     [Column("birthday")]
     public DateTime Birthday { get; set; }
@@ -53,12 +54,16 @@ public class Artist {
     public DateTime Obit { get; set; }
 
 
-    public string QuoteString(Func<string, string> relativToAbsPathConverter) {
-        return System.IO.File.ReadAllLines($"wwwroot{MarkdownPath}")[0];
-    }
-    public string BiographyString(Func<string, string> relativToAbsPathConverter) {
-        string text = System.IO.File.ReadAllText($"wwwroot{MarkdownPath}");
-        return text.Substring(text.IndexOf('\n')).Trim();
+    public string QuoteString => 
+        System.IO.File.ReadAllLines(MarkdownPath)[0];
+
+    public string BiographyString {
+        get {
+            var text = System.IO.File.ReadAllLines(MarkdownPath).Skip(1);
+            if (text.Any())
+                return text.Aggregate((x, y) => $"{x}\n{y}");
+            else return string.Empty;
+        }
     }
 
     public string LifeDates => $"{Localizer.GetDayString(Birthday)} - {Localizer.GetDayString(Obit)}";
