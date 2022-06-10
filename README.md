@@ -12,6 +12,13 @@ The source code for <https://technecon.de>!
   - `birthday` and `obit` point to a specific day.
   - The given `picture` has to have a 512x512 resolution.
 
+- `OpusType`
+  - 0 is text, 1 is music, 2 is painting
+
+- `Opera`
+  - `base` can be specified if the given artwork used an already existing one
+  - `path` points to some type of file fitting to the content, e.g. a `.jpg` file for a painting
+
 - The `markdown` file for artists
   - The first line is a quote from the artist.
   - All the following lines are the biography.

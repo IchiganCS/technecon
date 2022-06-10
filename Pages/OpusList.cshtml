@@ -1,0 +1,14 @@
+@page
+@model OpusListModel
+@{
+    ViewData["Title"] = "Werkeliste";
+    ViewData["Description"] = "Eine Liste aller Werke";
+}
+
+<div>
+    @using (var db = ApplicationDbContext.CreateDefault()) {
+        @foreach (Opus op in db.Opera) {
+            <p>@op.GetTitle(db) von @db.Artists.Find(op.CreatorID).CommonName</p>
+        }
+    }
+</div>

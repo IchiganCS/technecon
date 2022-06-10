@@ -38,10 +38,13 @@ public class Artist {
 
 
     [Column("markdown")]
-    public string MarkdownPath { get; set; }
+    public string? MarkdownPath { get; set; }
+    public bool HasMarkdown => !string.IsNullOrEmpty(MarkdownPath);
+
 
     [Column("picture")]
-    public string PicturePath { get; set; }
+    public string? PicturePath { get; set; }
+    public bool HasPicture => !string.IsNullOrEmpty(PicturePath);
 
     [Column("birthday")]
     public DateTime Birthday { get; set; }

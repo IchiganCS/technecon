@@ -13,7 +13,9 @@ public class ApplicationDbContext : DbContext {
     /// <typeparam name="ApplicationDbContext"></typeparam>
     /// <returns></returns>
     public static ApplicationDbContext CreateDefault() {
-        return new(StandardOptions!);
+        ApplicationDbContext res = new(StandardOptions!);
+
+        return res;
     }
 
 #pragma warning disable CS8618
@@ -27,4 +29,5 @@ public class ApplicationDbContext : DbContext {
     }
 
     public DbSet<Artist> Artists { get; set; }
+    public DbSet<Opus> Opera { get; set; }
 }
