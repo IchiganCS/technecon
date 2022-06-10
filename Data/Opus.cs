@@ -6,6 +6,12 @@ namespace Technecon.Data;
 
 [Table("opera")]
 public class Opus {
+    public enum Type {
+        Text = 0,
+        Music = 1,
+        Painting = 2
+    }
+
     [Column("id")]
     [Required]
     public int ID { get; set; }
@@ -17,6 +23,12 @@ public class Opus {
     [Column("base")]
     public int? BaseID { get; set; }
     public bool HasBase => BaseID is not null;
+
+    [Column("type")]
+    [Required]
+    private int TypeInt { get; set; }
+    public Type Kind => (Type)TypeInt;
+
 
     [Column("title")]
     public string? Title { get; set; }

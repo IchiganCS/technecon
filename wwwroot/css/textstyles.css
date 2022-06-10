@@ -29,7 +29,6 @@ div.artistcaptions>* {
 }
 
 div.artistcaptions>h1 {
-    font-family: serif;
     font-weight: normal;
     font-size: 3em;
     margin: 2em auto;
@@ -44,6 +43,20 @@ div.artistcaptions>h2 {
 div.artistcaptions>h3 {
     font-weight: normal;
     font-size: 1.3em;
+}
+
+div.opus>h1, div.opus h2 {
+    text-align: center;
+}
+div.opus>h1 {
+    font-weight: normal;
+    font-size: 3em;
+    margin-bottom: 0.3em;
+}
+div.opus>h2 {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: xx-large;
 }
 
 p.quote {

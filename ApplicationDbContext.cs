@@ -8,7 +8,6 @@ public class ApplicationDbContext : DbContext {
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
         : base(contextOptions) {
-
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

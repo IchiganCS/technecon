@@ -6,6 +6,12 @@
     ViewData["Description"] = "Lesen Sie mehr über " + ViewData["Title"];
 }
 
-<div>
-    <p>@Model.Opus.Creator.Fullname</p>
+<div class="opus">
+    @if (Model.Opus.Kind == Opus.Type.Painting) {
+        //TODO: Painting
+        <hr class="separator"/>
+    }
+    <h1>@Model.Opus.Title</h1>
+    <h2>@Model.Opus.Creator.CommonName</h2>
+    <hr class="separator"/>
 </div>

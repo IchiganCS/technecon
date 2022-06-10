@@ -8,6 +8,6 @@
 <div>
         @foreach (Opus op in Model.DbContext.Opera) {
             op.InitalizeWithDbContext(Model.DbContext);
-            <p>@op.Title von @op.Creator.CommonName</p>
+            <a asp-page="/Opus" asp-route-id="@op.ID">@op.Title von @op.Creator.CommonName</a>
         }
 </div>
