@@ -28,8 +28,9 @@ public class Opus {
 
     [Column("type")]
     [Required]
-    private int TypeInt { get; set; }
+    public int TypeInt { get; set; }
     public Type Kind => (Type)TypeInt;
+    public string KindString => Localizer.GetTypeString(Kind);
 
 
     [Column("title")]

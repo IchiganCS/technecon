@@ -14,10 +14,10 @@
 
     <h1>@Model.Opus.Title</h1>
     <h2>@Model.Opus.Creator.CommonName</h2>
-    @if (Model.Opus.HasMarkdown) {
+    @if (Model.Opus.HasMarkdown)
+    {
         @if (Model.Opus.HasText)
         {
-            <hr class="separator" />
             <div class="poem">
                 @foreach (string str in Model.Opus.Text.Split("\n\n"))
                 {
@@ -39,4 +39,16 @@
             </div>
         }
     }
+
+    <div class="picturebox">
+        <partial name="_ArtistPreview" model="@Model.Opus.Creator" />
+        @{
+            Opus bas = Model.Opus.Base;
+            while (bas is not null)
+            {
+                <partial name="_ArtistPreview" model="bas.Creator" />
+                bas = bas.Base;
+            }
+        }
+    </div>
 </div>

@@ -6,8 +6,10 @@
 }
 
 <div>
+    <div class="picturebox">
         @foreach (Opus op in Model.DbContext.Opera) {
             op.InitalizeWithDbContext(Model.DbContext);
-            <a asp-page="/Opus" asp-route-id="@op.ID">@op.Title von @op.Creator.CommonName</a>
+            <partial name="_OpusPreview" model="op"/>
         }
+    </div>
 </div>

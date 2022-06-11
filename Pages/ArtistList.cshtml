@@ -8,16 +8,7 @@
 <div>
     <div class="picturebox">
     @foreach (Artist art in Model.DbContext.Artists.OrderBy(x => x.Birthday)) {
-        <div class="picturelink">
-            <a asp-page="/Artist" asp-route-id="@art.ID">
-                @if (art.HasPicture) {
-                    <img src="@art.HtmlPicturePath" alt="@art.CommonName"/>
-                }
-                <h1>@art.CommonName</h1>
-                <h2>@art.OccupationString</h2>
-                <h3>@art.YearLifeDates</h3>
-            </a>
-        </div>
+        <partial name="_ArtistPreview" model="art"/>
     }
     </div>
 </div>

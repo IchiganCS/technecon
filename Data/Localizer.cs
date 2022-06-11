@@ -19,4 +19,13 @@ public static class Localizer {
     internal static object GetYearString(DateTime date) {
         return date.ToString("yyyy", CultureInfo.CreateSpecificCulture("de-DE"));
     }
+
+    internal static string GetTypeString(Opus.Type type) {
+        return type switch {
+            Opus.Type.Music => "Musikstück",
+            Opus.Type.Text => "Schriftstück",
+            Opus.Type.Painting => "Gemälde",
+            _ => ""
+        };
+    }
 }
