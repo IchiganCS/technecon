@@ -41,4 +41,10 @@
             </div>
         }
     }
+
+    <hr class="separator" />
+    @foreach (Opus op in Model.DbContext.Opera.Where(x => x.CreatorID == Model.Artist.ID)) {
+        op.InitalizeWithDbContext(Model.DbContext);
+        <partial name="_OpusPreview" model="op"/>
+    }
 </div>
