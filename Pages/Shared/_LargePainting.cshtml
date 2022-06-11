@@ -1,0 +1,8 @@
+@model Opus
+
+<div class="largecaptionedpainting">
+    <a asp-page="/Opus" asp-route-id="@Model.ID">
+        <img src="@Model.HtmlPaintingPath" alt="@Model.Title" title="@Model.Title" />
+        <p>@Model.Title, @Model.Creator.CommonName</p>
+    </a>
+</div>

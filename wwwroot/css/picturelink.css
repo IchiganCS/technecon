@@ -4,6 +4,7 @@ div.picturelink {
     border: 1px solid rgb(194, 194, 194);
     margin: 2em;
     height: fit-content;
+    min-height: 8rem;
 }
 
 div.picturelink>a {
@@ -15,6 +16,7 @@ div.picturelink>a {
 
 div.picturelink>a>img {
     width: inherit;
+    margin-bottom: -1rem;
 }
 
 div.picturelink>a>* {
@@ -27,7 +29,7 @@ div.picturelink>a>* {
 div.picturelink>a>h1 {
     color: black;
     font-size: large;
-    margin-top: 0.3rem;
+    margin-top: 1.3rem;
 }
 
 div.picturelink>a>h2 {
@@ -47,4 +49,24 @@ div.picturelink>a>h3 {
 div.picturebox {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+div.largecaptionedpainting>a {
+    text-decoration: none;
+}
+
+div.largecaptionedpainting>a>p {
+    color: rgb(72, 72, 72);
+    font-family: sans-serif;
+    font-style: italic;
+    text-align: center;
+    margin: auto;
+    text-decoration: none;
+}
+
+div.largecaptionedpainting>a>img {
+    width: 30em;
 }

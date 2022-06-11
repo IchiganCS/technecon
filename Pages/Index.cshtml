@@ -21,13 +21,7 @@
             Warum beginnen Sie Ihren Rundgang nicht, indem Sie rechts auf das Gemälde drücken? So gelangen Sie zu dessen Seite mit näheren Informationen.
             </markdown>
         </div>
-        @{string imageDesc = "Der Triumph der Religion in den Künsten, Friedrich Overbeck"; }
-        <div class="imagewithcaption accompanying">
-            <img src="/images/triumphofreligion.jpg" 
-                alt="@imageDesc"
-                title="@imageDesc" />
-            <p>@imageDesc</p>
-        </div>
+        <partial name="_LargePainting" model="@Model.DbContext.Opera.Find(3)"/>
     </div>
     <hr class="separator"/>
 </div>

@@ -30,22 +30,16 @@ body {
 div.content {
   max-width: min(70em, 90%);
   margin: auto;
-  margin-top: 5em;
+  margin-top: 6rem;
   background-color: white;
   display: flex;
   justify-content: center;
 }
 
-div.imagewithcaption>p, div.imagewithcaption>a>p {
-  color: rgb(72, 72, 72);
-  font-family: sans-serif;
-  font-style: italic;
-  text-align: center;
-  margin: auto;
-  text-decoration: none;
+
+img.exhibition {
+  max-height: 50rem;
 }
-
-
 
 hr.separator {
   margin: 2em auto;
@@ -54,9 +48,6 @@ hr.separator {
 
 
 
-div.accompanying>img, img.accompanying {
-  width: 30em;
-}
 
 div.contentsplitter {
   margin-top: 2em;
@@ -73,6 +64,3 @@ div.contentsplitter>img {
   padding: 1em;
 }
 
-img.exhibition {
-  max-height: 50rem;
-}
