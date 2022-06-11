@@ -37,7 +37,7 @@ div.content {
 }
 
 div.imagewithcaption>p, div.imagewithcaption>a>p {
-  color: gray;
+  color: rgb(72, 72, 72);
   font-family: sans-serif;
   font-style: italic;
   text-align: center;

@@ -8,7 +8,6 @@
 <div>
     <div class="picturebox">
         @foreach (Opus op in Model.DbContext.Opera) {
-            op.InitalizeWithDbContext(Model.DbContext);
             <partial name="_OpusPreview" model="op"/>
         }
     </div>

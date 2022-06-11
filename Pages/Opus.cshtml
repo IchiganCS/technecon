@@ -1,7 +1,6 @@
 @page "{id:int?}"
 @model OpusModel
 @{
-    Model.Opus.InitalizeWithDbContext(Model.DbContext);
     ViewData["Title"] = Model.Opus.Title;
     ViewData["Description"] = "Lesen Sie mehr über " + ViewData["Title"];
 }
@@ -41,9 +40,9 @@
     }
 
     <div class="picturebox">
-        @foreach (Artist ar in Model.Opus.AllContributingArtists())
-        {
-            <partial name="_ArtistPreview" model="ar" />
+        <partial name="_ArtistPreview" model="@Model.Opus.Creator" />
+        @if (Model.Opus.HasBase) {
+            <partial name="_ArtistPreview" model="@Model.Opus.Base.Creator" />
         }
     </div>
 </div>

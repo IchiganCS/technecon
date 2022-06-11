@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Technecon.Data;
 
@@ -12,30 +12,38 @@ public class Opus {
         Painting = 2
     }
 
+    public Opus() { }
+    private ILazyLoader LazyLoader { get; set; }
+    private Opus(ILazyLoader ll) {
+        LazyLoader = ll;
+    }
+
     [Column("id")]
-    [Required]
+    [Key]
     public int ID { get; set; }
+
 
     [Column("creator")]
     public int CreatorID { get; set; }
-    public Artist Creator { get; private set; }
+    private Artist _creator;
+    [ForeignKey("CreatorID")]
+    public Artist Creator {
+        get => LazyLoader.Load(this, ref _creator!)!;
+        set => _creator = value;
+    }
+
 
     [Column("base")]
     public int? BaseID { get; set; }
     public bool HasBase => BaseID is not null;
-    public Opus Base { get; private set; }
-
-    public IEnumerable<Artist> AllContributingArtists() {
-            List<Artist> res = new();
-            res.Add(Creator);
-
-            Opus bas = Base;
-            while (bas is not null) {
-                res.Add(bas.Creator);
-                bas = bas.Base;
-            }
-            return res.DistinctBy(x => x.ID);
+    private Opus _base;
+    [ForeignKey("BaseID")]
+    public Opus Base {
+        get => LazyLoader.Load(this, ref _base!)!;
+        set => _base = value;
     }
+
+
 
 
     [Column("type")]
@@ -45,8 +53,14 @@ public class Opus {
     public string KindString => Localizer.GetTypeString(Kind);
 
 
+
+    public string? _title;
     [Column("title")]
-    public string? Title { get; set; }
+    public string? Title {
+        get => _title ?? Base.Title;
+        set => _title = value;
+    }
+
 
 
     private string FileDirectory => $"wwwroot/opera/{ID}/";
@@ -84,22 +98,4 @@ public class Opus {
         }
     }
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
-
-
-
-    private bool InitalizedWithDbContext { get; set; } = false;
-    public void InitalizeWithDbContext(ApplicationDbContext context) {
-        if (InitalizedWithDbContext)
-            return;
-
-        InitalizedWithDbContext = true;
-        Creator = context.Artists.Find(CreatorID)!;
-
-        if (HasBase && string.IsNullOrEmpty(Title)) {
-            Base = context.Opera.Find(BaseID)!;
-            Base.InitalizeWithDbContext(context);
-            Title = Base.Title;
-        }
-    }
-
 }

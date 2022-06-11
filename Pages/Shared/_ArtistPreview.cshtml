@@ -2,14 +2,11 @@
 
 <div class="picturelink">
     <a asp-page="/Artist" asp-route-id="@Model.ID">
-        @if (Model.HasPicture)
-        {
-                <img src="@Model.HtmlPicturePath" alt="@Model.CommonName"/>
+        @if (Model.HasPicture) {
+            <img src="@Model.HtmlPicturePath" alt="@Model.CommonName"/>
         }
-        <div>
-            <h1>@Model.CommonName</h1>
-            <h2>@Model.OccupationString</h2>
-            <h3>@Model.YearLifeDates</h3>
-        </div>
+        <h1>@Model.CommonName</h1>
+        <h2>@Model.OccupationString</h2>
+        <h3>@Model.YearLifeDates</h3>
     </a>
 </div>

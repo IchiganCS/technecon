@@ -5,10 +5,8 @@
         @if (Model.Kind == Opus.Type.Painting) {
             <img src="@Model.HtmlPaintingPath" alt="@Model.Title"/>
         }
-        <div>
-            <h1>@Model.Title</h1>
-            <h2>@Model.KindString</h2>
-            <h3>@Model.Creator.CommonName</h3>
-        </div>
+        <h1>@Model.Title</h1>
+        <h2>@Model.KindString</h2>
+        <h3>@Model.Creator.CommonName</h3>
     </a>
 </div>

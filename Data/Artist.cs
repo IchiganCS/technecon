@@ -25,8 +25,8 @@ public class Artist {
     public string CommonName => (CommonFirstname ?? AllFirstnames) + " " + Surname;
 
 
-    [Required]
     [Column("id")]
+    [Key]
     public int ID { get; set; }
 
     [Column("sex")]

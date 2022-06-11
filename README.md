@@ -11,6 +11,7 @@ The source code for <https://technecon.de>!
   - Variable pointing to a file (`markdown` and `picture`) can be converted to a readable file from the disk via `Url.Content($"wwwroot{path}")`.
   - `birthday` and `obit` point to a specific day.
   - The given `picture` has to have a 512x512 resolution.
+  - `index` is used to add values like "op. 4" or "BWV 872"
 
 - `OpusType`
   - 0 is text, 1 is music, 2 is painting

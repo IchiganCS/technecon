@@ -10,6 +10,9 @@ public class ApplicationDbContext : DbContext {
         : base(contextOptions) {
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     }
 

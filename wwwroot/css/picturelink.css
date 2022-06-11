@@ -1,7 +1,7 @@
 div.picturelink {
     width: 13rem;
-    border-radius: 0.5em;border: 
-    1px solid rgb(194, 194, 194);
+    border-radius: 0;
+    border: 1px solid rgb(194, 194, 194);
     margin: 2em;
     height: fit-content;
 }
@@ -15,30 +15,29 @@ div.picturelink>a {
 
 div.picturelink>a>img {
     width: inherit;
-    margin-bottom: 0em;
 }
 
-div.picturelink>a>div>* {
+div.picturelink>a>* {
     font-weight: normal;
     text-align: center;
     font-family: sans-serif;
     margin: 0;
 }
 
-div.picturelink>a>div>h1 {
+div.picturelink>a>h1 {
     color: black;
     font-size: large;
     margin-top: 0.3rem;
 }
 
-div.picturelink>a>div>h2 {
+div.picturelink>a>h2 {
     margin: 0;
     color: rgb(65, 65, 65);
     font-style: italic;
     font-size: small;
 }
 
-div.picturelink>a>div>h3 {
+div.picturelink>a>h3 {
     font-size: medium;
     margin-top: 0.6em;
     color: rgb(65, 65, 65);
