@@ -1,0 +1,16 @@
+﻿@page "/"
+
+@inject ApplicationDbContext DbContext
+
+
+<PageTitle>TechneCon</PageTitle>
+
+<div>
+    <div class="contentsplitter">
+        <div class="text">
+            <Markdown FileName="intro.md"/>
+        </div>
+        <LargePainting Opus="@DbContext.Opera.Find(3)"/>
+    </div>
+    <hr class="separator"/>
+</div>

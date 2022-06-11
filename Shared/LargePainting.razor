@@ -1,0 +1,11 @@
+<div class="largecaptionedpainting">
+    <a href="/Opus/@Opus.ID">
+        <img src="@Opus.HtmlPaintingPath" alt="@Opus.Title" title="@Opus.Title" />
+        <p>@Opus.Title, @Opus.Creator.CommonName</p>
+    </a>
+</div>
+
+@code {
+    [Parameter]
+    public Data.Opus Opus { get; set; }
+}

@@ -1,0 +1,56 @@
+@page "/Artist/{ID:int?}"
+
+<PageTitle>@Ar.CommonName</PageTitle>
+
+@inject ApplicationDbContext DbContext
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+
+    public Data.Artist Ar { get; private set; }
+
+    protected override void OnInitialized() {
+        Ar = DbContext.Artists.Find(ID)!;
+    }
+}
+
+<div>
+    <div class="contentsplitter">
+        @if (Ar.HasPicture) {
+            <img src="@Ar.HtmlPicturePath"
+                class="accompanying"/>
+        }
+
+        <div class="artistcaptions">
+            <h1>@Ar.AllFirstnames<br>
+            @Ar.Surname</h1>
+            <h2>@Ar.OccupationString</h2>
+            <h3>@Ar.LifeDates</h3>
+        </div>
+    </div>
+
+    
+    @if (Ar.HasMarkdown) {
+
+        <hr class="separator"/>
+        <center>
+            <p class="quote">
+                „@Ar.QuoteString“
+            </p>
+        </center>
+
+        @if (!string.IsNullOrWhiteSpace(Ar.BiographyString)) {
+            <hr class="separator" />
+
+            <div class="text">
+                <Markdown Text="@Ar.BiographyString"/>
+            </div>
+        }
+    }
+
+    <hr class="separator" />
+    @foreach (Technecon.Data.Opus op in DbContext.Opera.Where(x => x.CreatorID == Ar.ID)) {
+        <OpusPreview Opus="op"/>
+    }
+</div>

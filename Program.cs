@@ -7,9 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 IMvcBuilder mvcBuilder= builder.Services.AddRazorPages();
 
-if (builder.Environment.IsDevelopment()) 
-    mvcBuilder.AddRazorRuntimeCompilation();
-
 string host = string.Empty;
 string password = string.Empty;
 string user = "postgres";
@@ -30,6 +27,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseNpgsql($"Host={hos
         maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30),
         errorCodesToAdd: null)));
 
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
@@ -51,6 +49,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
 
 app.Run();

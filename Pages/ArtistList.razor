@@ -1,0 +1,17 @@
+@page "/ArtistList"
+
+@inject ApplicationDbContext DbContext
+
+<PageTitle>Künsterliste</PageTitle>
+
+<div>    
+    <div class="text">
+        <Markdown FileName="artistsIntro.md"/>
+    </div>
+    <div class="picturebox">
+    @foreach (Technecon.Data.Artist art in DbContext.Artists.ToList().OrderBy(x => !x.HasPicture)) {
+        <ArtistPreview Artist="@art"/>
+    }
+
+    </div>
+</div>

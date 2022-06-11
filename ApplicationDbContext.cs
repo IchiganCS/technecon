@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Technecon.Data;
-using Technecon.Pages;
 
 namespace Technecon;
 

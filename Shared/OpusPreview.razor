@@ -1,0 +1,16 @@
+<div class="picturelink">
+    <a href="/Opus/@Opus.ID">
+        @if (Opus.Kind == Data.Opus.Type.Painting)
+        {
+            <img src="@Opus.HtmlPaintingPath" alt="@Opus.Title"/>
+        }
+        <h1>@Opus.Title</h1>
+        <h2>@Opus.KindString</h2>
+        <h3>@Opus.Creator.CommonName</h3>
+    </a>
+</div>
+
+@code {
+    [Parameter]
+    public Data.Opus Opus { get; set; }
+}

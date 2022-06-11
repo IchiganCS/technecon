@@ -1,0 +1,16 @@
+<div class="picturelink">
+    <a href="/Artist/@Artist.ID">
+        @if (Artist.HasPicture)
+        {
+            <img src="@Artist.HtmlPicturePath" alt="@Artist.CommonName"/>
+        }
+        <h1>@Artist.CommonName</h1>
+        <h2>@Artist.OccupationString</h2>
+        <h3>@Artist.YearLifeDates</h3>
+    </a>
+</div>
+
+@code {
+    [Parameter]
+    public Technecon.Data.Artist Artist { get; set; }
+}

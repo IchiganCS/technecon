@@ -1,0 +1,21 @@
+@using Markdig
+@using System.IO
+
+@GetHtmlMarkup()
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public string FileName { get; set; }
+
+    public MarkupString GetHtmlMarkup() {
+        string text = Text ?? File.ReadAllText("wwwroot/markdown/" + FileName);
+
+        MarkdownPipeline pipeline = 
+        new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        
+        return (MarkupString)Markdig.Markdown.ToHtml(text, pipeline);
+    }
+}
