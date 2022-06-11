@@ -39,3 +39,5 @@ Erreicht den Hof mit Mühe und Not;
 In seinen Armen, das Kind war tot.
 
 ---
+
+Ein Klassiker!

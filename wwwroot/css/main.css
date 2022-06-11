@@ -73,3 +73,6 @@ div.contentsplitter>img {
   padding: 1em;
 }
 
+img.exhibition {
+  max-height: 50rem;
+}

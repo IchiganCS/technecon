@@ -9,7 +9,7 @@
 <div class="opus">
     @if (Model.Opus.Kind == Opus.Type.Painting)
     {
-        //TODO: Painting
+        <img class="exhibition" src="@Model.Opus.HtmlPaintingPath" alt="@Model.Opus.Title"/>
     }
 
     <h1>@Model.Opus.Title</h1>
@@ -41,14 +41,9 @@
     }
 
     <div class="picturebox">
-        <partial name="_ArtistPreview" model="@Model.Opus.Creator" />
-        @{
-            Opus bas = Model.Opus.Base;
-            while (bas is not null)
-            {
-                <partial name="_ArtistPreview" model="bas.Creator" />
-                bas = bas.Base;
-            }
+        @foreach (Artist ar in Model.Opus.AllContributingArtists())
+        {
+            <partial name="_ArtistPreview" model="ar" />
         }
     </div>
 </div>

@@ -25,6 +25,18 @@ public class Opus {
     public bool HasBase => BaseID is not null;
     public Opus Base { get; private set; }
 
+    public IEnumerable<Artist> AllContributingArtists() {
+            List<Artist> res = new();
+            res.Add(Creator);
+
+            Opus bas = Base;
+            while (bas is not null) {
+                res.Add(bas.Creator);
+                bas = bas.Base;
+            }
+            return res.DistinctBy(x => x.ID);
+    }
+
 
     [Column("type")]
     [Required]
@@ -40,6 +52,7 @@ public class Opus {
     private string FileDirectory => $"wwwroot/opera/{ID}/";
     public string MarkdownPath => FileDirectory + "markdown.md";
     public string PaintingPath => FileDirectory + "image.jpg";
+    public string HtmlPaintingPath => $"/opera/{ID}/image.jpg";
     public bool HasMarkdown => File.Exists(MarkdownPath);
     public IEnumerable<string> TextLines {
         get {

@@ -4,6 +4,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>db72939f-2217-4e7f-b319-2c8d3b35d70c</UserSecretsId>
+		<NoWarn>8618</NoWarn>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4"/>

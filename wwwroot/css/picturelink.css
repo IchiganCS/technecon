@@ -1,48 +1,48 @@
 div.picturelink {
-    max-width: 7em;
+    width: 13rem;
     border-radius: 0.5em;border: 
     1px solid rgb(194, 194, 194);
-    padding: 0.6em;
     margin: 2em;
+    height: fit-content;
 }
 
 div.picturelink>a {
-
-    justify-items: center;
     text-decoration: none;
-    max-width: inherit;
+    width: inherit;
     height: inherit;
-}
-
-div.picturelink>*>img {
     margin: auto;
-    max-width: inherit;
-    margin-bottom: 0.5em;
 }
 
-div.picturelink>*>* {
+div.picturelink>a>img {
+    width: inherit;
+    margin-bottom: 0em;
+}
+
+div.picturelink>a>div>* {
     font-weight: normal;
     text-align: center;
     font-family: sans-serif;
     margin: 0;
 }
 
-div.picturelink>*>h1 {
+div.picturelink>a>div>h1 {
     color: black;
     font-size: large;
+    margin-top: 0.3rem;
 }
 
-div.picturelink>*>h2 {
+div.picturelink>a>div>h2 {
     margin: 0;
     color: rgb(65, 65, 65);
     font-style: italic;
     font-size: small;
 }
 
-div.picturelink>*>h3 {
+div.picturelink>a>div>h3 {
     font-size: medium;
     margin-top: 0.6em;
     color: rgb(65, 65, 65);
+    margin-bottom: 0.2rem;
 }
 
 div.picturebox {
