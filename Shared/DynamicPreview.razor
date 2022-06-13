@@ -1,0 +1,40 @@
+@using Data
+
+<DynamicComponent Type="@PreviewType" Parameters="@Parameters" />
+
+@code {
+    private IDbEntry _value;
+    [Parameter]
+    public IDbEntry Value
+    {
+        get => _value;
+        set
+        {
+            _value = value;
+            UpdateValue();
+        }
+    }
+
+    public Dictionary<string, object> Parameters { get; set; }
+
+    public Type PreviewType { get; set; }
+
+    private void UpdateValue()
+    {
+        Parameters = new();
+
+        if (Value is Data.Opus)
+        {
+            PreviewType = typeof(OpusPreview);
+            Parameters.Add("Opus", Value);
+        }
+        else if (Value is Data.Artist)
+        {
+            PreviewType = typeof(ArtistPreview);
+            Parameters.Add("Artist", Value);
+        }
+
+        else
+            throw new ArgumentException($"{nameof(Value)} is not a supported type");
+    }
+}

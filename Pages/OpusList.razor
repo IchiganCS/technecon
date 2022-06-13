@@ -8,9 +8,5 @@
     <div class="text">
         <Markdown FileName="operaIntro.md"/>
     </div>
-    <div class="picturebox">
-        @foreach (Data.Opus op in DbContext.Opera.OrderByDescending(x => x.TypeInt)) {
-            <OpusPreview Opus="op" />
-        }
-    </div>
+    <DynamicListPreview FullList="DbContext.Opera.Cast<Data.IDbEntry>().ToList()"/>
 </div>

@@ -6,7 +6,7 @@ namespace Technecon.Data;
 
 
 [Table("artists")]
-public class Artist {
+public class Artist : IDbEntry {
     public string FileDirectory => $"wwwroot/artists/{ID}/";
 
     [Column("surname")]
@@ -68,4 +68,14 @@ public class Artist {
 
     public string LifeDates => $"{Localizer.GetDayString(Birthday)} - {Localizer.GetDayString(Obit)}";
     public string YearLifeDates => $"{Localizer.GetYearString(Birthday)} - {Localizer.GetYearString(Obit)}";
+
+    public bool FitsSearchString(string str) {
+        string[] words = str.ToLower().Split();
+        return words.All(
+            x => Fullname.ToLower().Contains(x));
+    }
+
+    public override string ToString() {
+        return CommonName;
+    }
 }

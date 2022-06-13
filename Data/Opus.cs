@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace Technecon.Data;
 
 [Table("opera")]
-public class Opus {
+public class Opus : IDbEntry {
     public enum Type {
         Text = 0,
         Music = 1,
@@ -98,4 +98,15 @@ public class Opus {
         }
     }
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
+
+    public bool FitsSearchString(string str) {
+        string[] words = str.ToLower().Split();
+        return words.All(
+            x => Title!.ToLower().Contains(x) || 
+            Creator.CommonName.ToLower().Contains(x));
+    }
+
+    public override string ToString() {
+        return Title!;
+    }
 }

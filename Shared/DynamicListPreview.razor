@@ -1,0 +1,36 @@
+@using Data
+<input @bind="Search" @bind:event="oninput"/>
+<div class="picturebox">
+    @foreach (IDbEntry item in Filtered) {
+        <DynamicPreview Value="item"/>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<IDbEntry> FullList { get; set; }
+
+
+    private IEnumerable<IDbEntry> Filtered { get; set; }
+
+    private string _search = "";
+    private string Search
+    {
+        get => _search;
+        set
+        {
+            _search = value;
+            if (_search.Any())
+                Filtered = FullList.Where(x => x.FitsSearchString(_search));
+
+            else
+                Filtered = FullList;
+
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized() {
+        Filtered = FullList;
+    }
+}
