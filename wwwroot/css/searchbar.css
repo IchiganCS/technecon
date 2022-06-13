@@ -1,0 +1,33 @@
+:root {
+    --height: 2.4rem;
+    --border-radius: 0.3rem;
+}
+
+div.searchbar {
+    display: flex;
+    justify-content: center;
+    height: var(--height);
+}
+
+div.searchbar>input {
+    max-height: var(--height);
+    width: 60%;
+    margin: 0;
+    font-size: large;
+    padding: 0rem 0.6rem;
+    border: darkgray 1px solid;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+div.searchbar>input::placeholder {
+    font-style: italic;
+}
+
+div.searchbar>button {
+    /* background-image: url(/favicon-192x192.png); */
+    height: var(--height);
+    width: var(--height);
+    padding: 0;
+    margin: 0;
+    border: darkgray 1px solid;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}

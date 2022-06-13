@@ -1,6 +1,7 @@
 @import url(navbar.css);
 @import url(textstyles.css);
 @import url(picturelink.css);
+@import url(searchbar.css);
 
 html {
   font-size: 14px;
