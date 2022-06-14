@@ -1,8 +1,11 @@
+:root {
+    --box-width: 13rem;
+}
+
 div.picturelink {
-    width: 13rem;
+    width: var(--box-width);
     border-radius: 0;
     border: 1px solid rgb(194, 194, 194);
-    margin: 2em;
     height: fit-content;
     min-height: 8rem;
 }
@@ -47,11 +50,12 @@ div.picturelink>a>h3 {
 }
 
 div.picturebox {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 2.5rem;
+    display: grid;
+    justify-content: space-between;
+    grid-gap: 2rem 1.4rem;
+    grid-template-columns: repeat(auto-fill, var(--box-width));
 }
-
 
 
 div.largecaptionedpainting>a {

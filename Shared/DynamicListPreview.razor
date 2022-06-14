@@ -1,7 +1,7 @@
 @using Data
 <div class="searchbar">
-    <input @bind="Search" @bind:event="oninput" placeholder="Suche..."/>
-    <button @onclick="@(() => Search = "")" type="button">D.</button>
+    <input class="leftborder" @bind="Search" @bind:event="oninput" placeholder="Suche..."/>
+    <button class="rightborder" @onclick="@(() => Search = "")" type="button">D.</button>
 </div>
 <div class="picturebox">
     @foreach (IDbEntry item in Filtered) {
