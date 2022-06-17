@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Technecon.Shared;
 
 namespace Technecon.Data;
 
@@ -69,8 +69,7 @@ public class Artist : IDbEntry {
     public string LifeDates => $"{Localizer.GetDayString(Birthday)} - {Localizer.GetDayString(Obit)}";
     public string YearLifeDates => $"{Localizer.GetYearString(Birthday)} - {Localizer.GetYearString(Obit)}";
 
-    public bool FitsSearchString(string str) {
-        string[] words = str.ToLower().Split();
+    public bool MatchesWords(string[] words) {
         return words.All(
             x => Fullname.ToLower().Contains(x));
     }
@@ -78,4 +77,8 @@ public class Artist : IDbEntry {
     public override string ToString() {
         return CommonName;
     }
+
+    public int ByYear() => Birthday.Year;
+    public string ByName() => Surname!;
+    public Type GetPreviewType() => typeof(ArtistPreview);
 }

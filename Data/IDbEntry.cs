@@ -1,5 +1,5 @@
 namespace Technecon.Data;
 
-public interface IDbEntry {
-    public bool FitsSearchString(string str);
+public interface IDbEntry : ISearchable, IPreviewable, ISortable {
+
 }

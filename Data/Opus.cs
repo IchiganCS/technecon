@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Technecon.Shared;
 
 namespace Technecon.Data;
 
@@ -99,8 +100,7 @@ public class Opus : IDbEntry {
     }
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
 
-    public bool FitsSearchString(string str) {
-        string[] words = str.ToLower().Split();
+    public bool MatchesWords(string[] words) {
         return words.All(
             x => Title!.ToLower().Contains(x) || 
             Creator.CommonName.ToLower().Contains(x));
@@ -109,4 +109,9 @@ public class Opus : IDbEntry {
     public override string ToString() {
         return Title!;
     }
+    public int ByYear() => 0;
+    public string ByName() => Title!;
+
+    public System.Type GetPreviewType() => typeof(OpusPreview);
+
 }

@@ -1,6 +1,6 @@
 @using Data
 
-<DynamicComponent Type="@PreviewType" Parameters="@Parameters" />
+<DynamicComponent Type="@Value.GetPreviewType()" Parameters="@Parameters" />
 
 @code {
     private IDbEntry _value;
@@ -25,12 +25,10 @@
 
         if (Value is Data.Opus)
         {
-            PreviewType = typeof(OpusPreview);
             Parameters.Add("Opus", Value);
         }
         else if (Value is Data.Artist)
         {
-            PreviewType = typeof(ArtistPreview);
             Parameters.Add("Artist", Value);
         }
 

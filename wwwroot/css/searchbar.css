@@ -12,6 +12,7 @@
 .centerborder {
     border: darkgray 1px solid;
     border-radius: 0;
+    border-right: 0;
 }
 
 .rightborder {
@@ -40,10 +41,27 @@ div.searchbar>input:focus {
     outline: none;
 }
 
-div.searchbar>button {
+div.searchbar>button.sortingselect {
     /* background-image: url(/favicon-192x192.png); */
+    cursor: pointer;
     height: var(--height);
     width: var(--height);
     padding: 0;
     margin: 0;
+    font-size: x-large;
+}
+div.searchbar>button.sortingselect>ul {
+    position: absolute;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+}
+div.searchbar>button.sortingselect>ul>li {
+    outline: gray 1px solid;
+    background-color: white;
+    font-size: large;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.3rem 0.3rem;
+    cursor: pointer;
 }

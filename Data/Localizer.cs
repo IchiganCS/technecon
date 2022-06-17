@@ -16,11 +16,11 @@ public static class Localizer {
         return date.ToString("dd. MMMM yyyy", CultureInfo.CreateSpecificCulture("de-DE"));
     }
 
-    internal static object GetYearString(DateTime date) {
+    public static string GetYearString(DateTime date) {
         return date.ToString("yyyy", CultureInfo.CreateSpecificCulture("de-DE"));
     }
 
-    internal static string GetTypeString(Opus.Type type) {
+    public static string GetTypeString(Opus.Type type) {
         return type switch {
             Opus.Type.Music => "Musikstück",
             Opus.Type.Text => "Schriftstück",

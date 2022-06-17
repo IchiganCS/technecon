@@ -1,20 +1,83 @@
 @using Data
 <div class="searchbar">
     <input class="leftborder" @bind="Search" @bind:event="oninput" placeholder="Suche..."/>
-    <button class="rightborder" @onclick="@(() => Search = "")" type="button">D.</button>
+    <button class="sortingselect rightborder" @onclick="@OnSortButtonClicked" type="button">
+        &#8693;
+        <ul style="display: @ToggleSelect">
+            <li @onclick="@(() => {
+                CurrentSortMode = SortMode.Down;
+                CurrentSortValue = SortValue.Alphabetic;
+                })">Alphabetisch, absteigend</li>
+            <li @onclick="@(() => {
+                CurrentSortMode = SortMode.Up;
+                CurrentSortValue = SortValue.Alphabetic;
+                })">Alphabetisch, aufsteigend</li>
+            <li @onclick="@(() => {
+                CurrentSortMode = SortMode.Down;
+                CurrentSortValue = SortValue.Date;
+                })">Jahr, absteigend</li>
+            <li @onclick="@(() => {
+                CurrentSortMode = SortMode.Up;
+                CurrentSortValue = SortValue.Date;
+                })">Jahr, aufsteigend</li>
+        </ul>
+    </button>
 </div>
 <div class="picturebox">
-    @foreach (IDbEntry item in Filtered) {
+    @foreach (IDbEntry item in Sorted) {
         <DynamicPreview Value="item"/>
     }
 </div>
 
 @code {
+    private string ToggleSelect { get; set; } = "none";
+
+    private string[] DescriptionsMode = new string[] {
+        ", absteigend", ", aufsteigend"
+    };
+    private string[] DescriptionsValue = new string[] {
+        "Alphabetisch", "Jahr"
+    };
+
+    private enum SortMode {
+        Down, Up
+    }
+    private enum SortValue {
+        Alphabetic, Date
+    }
+    private SortMode CurrentSortMode = SortMode.Down; 
+    private SortValue CurrentSortValue = SortValue.Alphabetic;
+
+    private void OnSortButtonClicked() {
+        if (ToggleSelect == "block")
+            ToggleSelect = "none";
+        else
+            ToggleSelect = "block";
+    }
+
     [Parameter]
     public List<IDbEntry> FullList { get; set; }
 
 
     private IEnumerable<IDbEntry> Filtered { get; set; }
+    private IEnumerable<IDbEntry> Sorted {
+        get {
+            var sorterName = (IDbEntry x) => x.ByName();
+            var sorterYear = (IDbEntry x) => x.ByYear();
+            if (CurrentSortMode == SortMode.Down) {
+                if (CurrentSortValue == SortValue.Alphabetic)
+                    return Filtered.OrderBy(sorterName);
+                else
+                    return Filtered.OrderByDescending(sorterYear);
+            }
+            else {
+                if (CurrentSortValue == SortValue.Alphabetic)
+                    return Filtered.OrderByDescending(sorterName);
+                else
+                    return Filtered.OrderBy(sorterYear);
+            }
+        }    
+    }
 
     private string _search = "";
     private string Search
@@ -24,7 +87,7 @@
         {
             _search = value;
             if (_search.Any())
-                Filtered = FullList.Where(x => x.FitsSearchString(_search));
+                Filtered = FullList.Where(x => x.MatchesWords(_search.ToLower().Split()));
 
             else
                 Filtered = FullList;
