@@ -11,12 +11,12 @@ public class Artist : IDbEntry {
 
     [Column("surname")]
     [Required]
-    public string? Surname { get; set; }
+    public string Surname { get; set; }
 
 
     [Column("allfirstnames")]
     [Required]
-    public string? AllFirstnames { get; set; }
+    public string AllFirstnames { get; set; }
 
     [Column("commonfirstname")]
     public string? CommonFirstname { get; set; }
@@ -38,13 +38,10 @@ public class Artist : IDbEntry {
     public string OccupationString => Localizer.GetOccupation(this);
 
 
-    private string MarkdownPath => FileDirectory + "markdown.md";
-    public bool HasMarkdown => File.Exists(MarkdownPath);
 
-
-    private string PicturePath => FileDirectory + "image.jpg";
-    public string HtmlPicturePath => $"/artists/{ID}/image.jpg";
-    public bool HasPicture => File.Exists(PicturePath);
+    [Column("picture")]
+    public string? PicturePath { get; set; }
+    public bool HasPicture => !string.IsNullOrEmpty(PicturePath);
 
 
     [Column("birthday")]
@@ -54,17 +51,11 @@ public class Artist : IDbEntry {
     public DateTime Obit { get; set; }
 
 
-    public string QuoteString => 
-        System.IO.File.ReadAllLines(MarkdownPath)[0];
+    [Column("quote")]
+    public string? Quote { get; set; }
 
-    public string BiographyString {
-        get {
-            var text = System.IO.File.ReadAllLines(MarkdownPath).Skip(1);
-            if (text.Any())
-                return text.Aggregate((x, y) => $"{x}\n{y}");
-            else return string.Empty;
-        }
-    }
+    [Column("biography")]
+    public string? Biography { get; set; }
 
     public string LifeDates => $"{Localizer.GetDayString(Birthday)} - {Localizer.GetDayString(Obit)}";
     public string YearLifeDates => $"{Localizer.GetYearString(Birthday)} - {Localizer.GetYearString(Obit)}";
@@ -79,6 +70,6 @@ public class Artist : IDbEntry {
     }
 
     public int ByYear() => Birthday.Year;
-    public string ByName() => Surname!;
+    public string ByName() => Surname;
     public Type GetPreviewType() => typeof(ArtistPreview);
 }

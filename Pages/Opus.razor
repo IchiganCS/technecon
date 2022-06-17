@@ -18,35 +18,32 @@
 <div class="opus">
     @if (Op.Kind == Technecon.Data.Opus.Type.Painting)
     {
-        <img class="exhibition" src="@Op.HtmlPaintingPath" alt="@Op.Title"/>
+        <img class="exhibition" src="@Op.PaintingPath" alt="@Op.Title"/>
     }
 
     <h1>@Op.Title</h1>
     <h2>@Op.Creator.CommonName</h2>
-    @if (Op.HasMarkdown)
+    @if (Op.HasText)
     {
-        @if (Op.HasText)
-        {
-            <div class="poem">
-                @foreach (string str in Op.Text.Split("\n\n"))
-                {
-                    <p>
-                        @foreach (string verse in str.Split("\n"))
-                        {
-                            @verse
-                            <br>
-                        }
-                    </p>
-                }
-            </div>
-        }
-        @if (Op.HasDescription)
-        {
-            <hr class="separator" />
-            <div class="text">
-                <Markdown Text="@Op.Description" />
-            </div>
-        }
+        <div class="poem">
+            @foreach (string str in Op.Text!.Split("\n\n"))
+            {
+                <p>
+                    @foreach (string verse in str.Split("\n"))
+                    {
+                        @verse
+                        <br>
+                    }
+                </p>
+            }
+        </div>
+    }
+    @if (Op.HasDescription)
+    {
+        <hr class="separator" />
+        <div class="text">
+            <Markdown Text="@Op.Description" />
+        </div>
     }
 
     <div class="picturebox">

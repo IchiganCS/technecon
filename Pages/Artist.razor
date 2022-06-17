@@ -18,7 +18,7 @@
 <div>
     <div class="contentsplitter">
         @if (Ar.HasPicture) {
-            <img src="@Ar.HtmlPicturePath"
+            <img src="@Ar.PicturePath"
                 class="accompanying"/>
         }
 
@@ -31,22 +31,22 @@
     </div>
 
     
-    @if (Ar.HasMarkdown) {
+    @if (!string.IsNullOrWhiteSpace(Ar.Quote)) {
 
         <hr class="separator"/>
         <center>
             <p class="quote">
-                „@Ar.QuoteString“
+                „@Ar.Quote“
             </p>
         </center>
+    }
 
-        @if (!string.IsNullOrWhiteSpace(Ar.BiographyString)) {
-            <hr class="separator" />
+    @if (!string.IsNullOrWhiteSpace(Ar.Biography)) {
+        <hr class="separator" />
 
-            <div class="text">
-                <Markdown Text="@Ar.BiographyString"/>
-            </div>
-        }
+        <div class="text">
+            <Markdown Text="@Ar.Biography"/>
+        </div>
     }
 
     <hr class="separator" />

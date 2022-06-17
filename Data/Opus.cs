@@ -64,41 +64,20 @@ public class Opus : IDbEntry {
 
 
 
-    private string FileDirectory => $"wwwroot/opera/{ID}/";
-    public string MarkdownPath => FileDirectory + "markdown.md";
-    public string PaintingPath => FileDirectory + "image.jpg";
-    public string HtmlPaintingPath => $"/opera/{ID}/image.jpg";
-    public bool HasMarkdown => File.Exists(MarkdownPath);
-    public IEnumerable<string> TextLines {
-        get {
-            var lines = File.ReadAllLines(MarkdownPath)
-                .TakeWhile(x => x != "---")
-                .SkipWhile(x => string.IsNullOrWhiteSpace(x))
-                .ToList();
+    [Column("picture")]
+    public string? PaintingPath { get; set; }
 
-            for (int i = lines.Count - 1; i >= 0; i--)
-                if (!string.IsNullOrWhiteSpace(lines[i])) {
-                    return lines.SkipLast(lines.Count - i - 1);
-                }
 
-            return new string[] { };
-        }
-    }
-    public string Text => TextLines.Aggregate((x, y) => $"{x}\n{y}");
-    public bool HasText => TextLines.Any();
-    public string Description {
-        get {
-            var lines = File.ReadAllLines(MarkdownPath)
-                .SkipWhile(x => x != "---")
-                .Skip(1);
+    [Column("text")]
+    public string? Text { get; set; }
+    public bool HasText => !string.IsNullOrEmpty(Text);
 
-            if (lines.Any())
-                return lines.Aggregate((x, y) => $"{x}\n{y}");
 
-            return "";
-        }
-    }
+    [Column("description")]
+    public string? Description { get; set; }
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
+
+
 
     public bool MatchesWords(string[] words) {
         return words.All(
